@@ -1,5 +1,8 @@
 """Offline-first portfolio application. Run: streamlit run app.py"""
 import io
+import os
+from pathlib import Path
+from urllib.parse import urlparse, parse_qs
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -37,7 +40,7 @@ def chart(fig):
     fig.update_layout(template='plotly_dark',paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)',font_color='#c4d1e5',margin=dict(l=10,r=15,t=40,b=15))
     st.plotly_chart(fig,use_container_width=True)
 
-overview,individual,batch,performance,method=st.tabs(['Portfolio overview','Score one customer','Batch scoring','Model evidence','Definitions & limitations'])
+overview,powerbi,individual,batch,performance,method=st.tabs(['Portfolio overview','Power BI report','Score one customer','Batch scoring','Model evidence','Definitions & limitations'])
 with overview:
     st.subheader('Historical sample overview')
     a,b,c,f=st.columns(4)
@@ -59,6 +62,45 @@ with overview:
         st.caption('Each dimension is a separate whole-sample aggregation; these are not cross-filtered customer-level records.')
     st.dataframe(seg.rename(columns={'monthly_charges':'sum_monthly_charges'}),hide_index=True,use_container_width=True)
     st.download_button('Download displayed aggregate',seg.to_csv(index=False),'churn_segment_aggregate.csv','text/csv')
+
+
+with powerbi:
+    st.subheader('Native Power BI report')
+    st.write('Power Query data preparation, DAX measures, and report pages for the approved telecom sample aggregates. This report does not contain customer IDs or raw customer records.')
+    embed_url = os.environ.get('POWER_BI_PUBLIC_EMBED_URL', '').strip()
+    try:
+        if not embed_url:
+            embed_url = str(st.secrets.get('POWER_BI_PUBLIC_EMBED_URL', '')).strip()
+    except (FileNotFoundError, st.errors.StreamlitSecretNotFoundError):
+        pass
+    parsed = urlparse(embed_url)
+    is_public_embed = (parsed.scheme == 'https' and parsed.netloc == 'app.powerbi.com' and parsed.path.rstrip('/') == '/view' and bool(parse_qs(parsed.query).get('r')) and not any(k.lower() in {'accesstoken', 'token'} for k in parse_qs(parsed.query)))
+    if embed_url and is_public_embed:
+        import streamlit.components.v1 as components
+        st.caption('Interactive report hosted by Microsoft Power BI. Public sample aggregates only.')
+        components.iframe(embed_url, height=780, scrolling=True)
+        st.link_button('Open interactive Power BI report', embed_url)
+    else:
+        st.warning('Live Power BI embedding is not connected. A local PBIP/PBIX folder is not an embed URL. The screenshots/download below, when available, are not a live interactive Power BI session.')
+        if embed_url:
+            st.error('Configured URL is not a supported public Power BI view URL. Ask the owner to configure a Publish-to-web link.')
+    report_dir = Path(__file__).resolve().parent / 'powerbi'
+    previews = sorted((report_dir / 'previews').glob('*.png')) if (report_dir / 'previews').exists() else []
+    if previews:
+        st.markdown('#### Report-page previews')
+        st.caption('Static screenshots captured from Power BI Desktop. Slicers and cross-filtering require the native download or a connected interactive embed.')
+        for preview in previews:
+            st.image(str(preview), caption=preview.stem.replace('_', ' ').title(), use_container_width=True)
+    for name, label in [('CustomerChurn.pbix', 'Download Power BI Desktop report (.pbix)'), ('CustomerChurn_PowerBI.zip', 'Download native Power BI project bundle')]:
+        file = report_dir / name
+        if file.exists():
+            st.download_button(label, file.read_bytes(), name, 'application/octet-stream' if name.endswith('.pbix') else 'application/zip')
+    st.markdown('#### Reading the report')
+    st.write('Each segment dimension summarizes the same sample population. The report must use exactly one dimension for segment totals, not sum across dimensions. Observed churned monthly charges are historical exposure, not future revenue loss. The source has no payment-delay field or measured CLV.')
+    with st.expander('Connect the interactive Power BI report'):
+        st.write('The report owner must publish the report to Power BI Service and obtain an approved Publish-to-web URL beginning https://app.powerbi.com/view?r=. The Power BI tenant must permit public embedding. Configure POWER_BI_PUBLIC_EMBED_URL in the hosting settings; never put access tokens in the app or repository.')
+        st.warning('Publish to web exposes the full underlying report model to anyone on the internet. Use only the supplied sample aggregates, never private customer data.')
+        st.markdown('[Microsoft public embedding requirements](https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-publish-to-web)')
 
 with individual:
     st.subheader('Single-customer risk explorer')
