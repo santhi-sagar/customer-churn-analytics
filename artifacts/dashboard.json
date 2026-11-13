@@ -1,0 +1,140 @@
+{
+  "customers": 7043,
+  "churned": 1869,
+  "churn_rate": 0.2653698707936959,
+  "monthly_charges": 456116.6,
+  "churned_monthly_charges": 139130.85,
+  "historical_value_proxy_total": 16055091.45,
+  "missing_total_charges": 11,
+  "segments": {
+    "Contract": [
+      {
+        "segment": "Month-to-month",
+        "customers": 3875,
+        "churned": 1655,
+        "monthly_charges": 257294.15,
+        "churn_rate": 0.4270967741935484
+      },
+      {
+        "segment": "One year",
+        "customers": 1473,
+        "churned": 166,
+        "monthly_charges": 95816.6,
+        "churn_rate": 0.11269517990495587
+      },
+      {
+        "segment": "Two year",
+        "customers": 1695,
+        "churned": 48,
+        "monthly_charges": 103005.85,
+        "churn_rate": 0.02831858407079646
+      }
+    ],
+    "tenure_band": [
+      {
+        "segment": "0\u201312",
+        "customers": 2186,
+        "churned": 1037,
+        "monthly_charges": 122629.75,
+        "churn_rate": 0.47438243366880145
+      },
+      {
+        "segment": "13\u201324",
+        "customers": 1024,
+        "churned": 294,
+        "monthly_charges": 62829.85,
+        "churn_rate": 0.287109375
+      },
+      {
+        "segment": "25\u201348",
+        "customers": 1594,
+        "churned": 325,
+        "monthly_charges": 105093.3,
+        "churn_rate": 0.2038895859473024
+      },
+      {
+        "segment": "49\u201372",
+        "customers": 2239,
+        "churned": 213,
+        "monthly_charges": 165563.7,
+        "churn_rate": 0.09513175524787852
+      }
+    ],
+    "InternetService": [
+      {
+        "segment": "DSL",
+        "customers": 2421,
+        "churned": 459,
+        "monthly_charges": 140665.35,
+        "churn_rate": 0.1895910780669145
+      },
+      {
+        "segment": "Fiber optic",
+        "customers": 3096,
+        "churned": 1297,
+        "monthly_charges": 283284.4,
+        "churn_rate": 0.4189276485788114
+      },
+      {
+        "segment": "No",
+        "customers": 1526,
+        "churned": 113,
+        "monthly_charges": 32166.85,
+        "churn_rate": 0.07404980340760157
+      }
+    ],
+    "PaymentMethod": [
+      {
+        "segment": "Bank transfer (automatic)",
+        "customers": 1544,
+        "churned": 258,
+        "monthly_charges": 103745.45,
+        "churn_rate": 0.16709844559585493
+      },
+      {
+        "segment": "Credit card (automatic)",
+        "customers": 1522,
+        "churned": 232,
+        "monthly_charges": 101231.85,
+        "churn_rate": 0.15243101182654403
+      },
+      {
+        "segment": "Electronic check",
+        "customers": 2365,
+        "churned": 1071,
+        "monthly_charges": 180345.0,
+        "churn_rate": 0.4528541226215645
+      },
+      {
+        "segment": "Mailed check",
+        "customers": 1612,
+        "churned": 308,
+        "monthly_charges": 70794.3,
+        "churn_rate": 0.19106699751861042
+      }
+    ],
+    "TechSupport": [
+      {
+        "segment": "No",
+        "customers": 3473,
+        "churned": 1446,
+        "monthly_charges": 259039.55,
+        "churn_rate": 0.4163547365390153
+      },
+      {
+        "segment": "No internet service",
+        "customers": 1526,
+        "churned": 113,
+        "monthly_charges": 32166.85,
+        "churn_rate": 0.07404980340760157
+      },
+      {
+        "segment": "Yes",
+        "customers": 2044,
+        "churned": 310,
+        "monthly_charges": 164910.2,
+        "churn_rate": 0.15166340508806261
+      }
+    ]
+  }
+}
