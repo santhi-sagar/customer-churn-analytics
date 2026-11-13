@@ -1,0 +1,8 @@
+Metric,Value
+customers,7043.0
+churned,1869.0
+churn_rate,0.2653698707936959
+monthly_charges,456116.6
+churned_monthly_charges,139130.85
+historical_value_proxy_total,16055091.45
+missing_total_charges,11.0
