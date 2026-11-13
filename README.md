@@ -2,7 +2,11 @@
 
 A Streamlit portfolio app for exploring telecom churn patterns and checking a small, reproducible logistic model. The app runs without downloading a dataset or training at startup. It ships numeric model parameters and aggregate sample statistics, not customer records.
 
-**Deployment status:** local build; no live URL verified in this build. Intended repository: https://github.com/santhi-sagar/customer-churn-analytics.
+**Live app:** https://sagar-customer-churn-analytics.streamlit.app/
+
+**GitHub:** https://github.com/santhi-sagar/customer-churn-analytics
+
+Deployment verified 13 November 2026: overview rendered, synthetic single-customer inference returned 40.0% probability (rounded), and synthetic CSV batch scoring produced downloadable scores on the hosted app. Free hosting may sleep/restart; uploads are session-only, not durable storage.
 
 ## Run locally
 
