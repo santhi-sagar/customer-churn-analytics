@@ -1,5 +1,5 @@
 {
-  "status": "APP_READY_LOCAL_TESTED_NOT_DEPLOYED",
+  "status": "DEPLOYED_APP_AND_NATIVE_POWERBI_VERIFIED; LIVE_POWERBI_EMBED_PENDING_URL",
   "python": "3.12 (tested 3.12.7 Windows)",
   "entrypoint": "app.py",
   "runtime_command": "python -m streamlit run app.py",
@@ -31,7 +31,14 @@
     "data/aggregates/summary.csv",
     "data/synthetic_scoring_template.csv",
     "POWERBI_HANDOFF.md",
-    "PUBLIC_FILE_MANIFEST.json"
+    "PUBLIC_FILE_MANIFEST.json",
+    "powerbi/CustomerChurn.pbix",
+    "powerbi/CustomerChurn_PowerBI.zip",
+    "powerbi/previews/overview.png",
+    "powerbi/previews/segments.png",
+    "powerbi/previews/definitions.png",
+    "powerbi/README.md",
+    "powerbi/native-runtime-result.json"
   ],
   "exclude": [
     "data/private/**",
