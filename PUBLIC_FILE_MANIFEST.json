@@ -1,0 +1,52 @@
+{
+  "status": "APP_READY_LOCAL_TESTED_NOT_DEPLOYED",
+  "python": "3.12 (tested 3.12.7 Windows)",
+  "entrypoint": "app.py",
+  "runtime_command": "python -m streamlit run app.py",
+  "runtime_requirements": "requirements.txt",
+  "development_requirements": "requirements-dev.txt",
+  "optional_full_environment_lock": "requirements-lock.txt",
+  "files": [
+    "app.py",
+    "core.py",
+    "train.py",
+    "requirements.txt",
+    "requirements-dev.txt",
+    "requirements-lock.txt",
+    "README.md",
+    "BUILD_REPORT.md",
+    "MODEL_CARD.md",
+    "DATA_DICTIONARY.md",
+    "DATA_PROVENANCE.md",
+    "THIRD_PARTY_NOTICES.md",
+    "LICENSE",
+    ".gitignore",
+    ".streamlit/config.toml",
+    "scripts/download_data.py",
+    "tests/test_app.py",
+    "artifacts/model.json",
+    "artifacts/evaluation.json",
+    "artifacts/dashboard.json",
+    "data/aggregates/segments.csv",
+    "data/aggregates/summary.csv",
+    "data/synthetic_scoring_template.csv",
+    "POWERBI_HANDOFF.md",
+    "PUBLIC_FILE_MANIFEST.json"
+  ],
+  "exclude": [
+    "data/private/**",
+    ".venv/**",
+    "uploads/**",
+    "__pycache__/**",
+    ".pytest_cache/**",
+    ".project.json",
+    ".strawberryignore",
+    ".env*",
+    ".streamlit/secrets.toml"
+  ],
+  "notes": [
+    "No actual source customer rows/IDs or uploads. Synthetic scoring template is hand-chosen.",
+    "Power BI assets provided separately by parent; add explicit reviewed files only.",
+    "All 18 tests pass including deterministic rebuild and actual headless health check."
+  ]
+}
