@@ -68,7 +68,7 @@ def test_streamlit_app():
     from streamlit.testing.v1 import AppTest
     at=AppTest.from_file(str(ROOT/'app.py'),default_timeout=45).run()
     assert not at.exception
-    assert len(at.tabs)==5
+    assert len(at.tabs)==6
     assert any('Observed churn rate'==m.label for m in at.metric)
     at.button[0].click().run()
     assert not at.exception
