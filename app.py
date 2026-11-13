@@ -10,7 +10,8 @@ st.set_page_config(page_title='Signal | Customer Churn Intelligence', page_icon=
 st.markdown('''<style>
 .stApp {background: #0b1220; color: #e9eff8;}
 [data-testid="stMetric"] {background: #152238; border:1px solid #273b56; padding:18px; border-radius:14px;}
-[data-testid="stMetricValue"] {font-size:clamp(1.1rem,2.5vw,2rem);white-space:normal;overflow-wrap:anywhere;}
+[data-testid="stMetricValue"], [data-testid="stMetricValue"] > div {font-size:clamp(1.1rem,2.5vw,2rem);white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;}
+@media (max-width:1100px) { [data-testid="stHorizontalBlock"] {flex-wrap:wrap;} [data-testid="stColumn"] {min-width:220px;flex:1 1 220px;} }
 [data-testid="stMetricLabel"] p {white-space:normal;overflow:visible;}
 h1,h2,h3 {letter-spacing:-.025em;} .eyebrow {color:#67e8c3;letter-spacing:.22em;font-size:.8rem;font-weight:700;}
 .hero {padding:12px 0 24px;} .hero p {color:#a8bad3;max-width:780px;}
