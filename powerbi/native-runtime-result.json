@@ -1,0 +1,62 @@
+{
+  "status": "PASS: native Desktop report renders, refresh data materialized, slicers tested, real PBIX exported and reopened",
+  "desktop_version": "2.159.1231.0",
+  "final_agent_process": 40984,
+  "pbix": {
+    "path": "CustomerChurn.pbix",
+    "bytes": 44656,
+    "sha256": "52ed2c935095ebf845679b9ecca4b84e5f5f06dbeb14de361f865674cc343f79",
+    "native_zip_parts_verified": [
+      "DataModel",
+      "Report/definition/version.json",
+      "Report/definition/report.json",
+      "three pages and 23 visual definitions"
+    ]
+  },
+  "tests": [
+    {
+      "test": "PBIP opens model and report",
+      "result": "PASS"
+    },
+    {
+      "test": "Embedded aggregate data populated and charts rendered",
+      "result": "PASS"
+    },
+    {
+      "test": "Overview",
+      "result": "PASS: 26.5% churn, $139K rounded observed churned MRR, contract/tenure/internet/payment bars rendered"
+    },
+    {
+      "test": "Default segment dimension",
+      "result": "PASS after DAX correction: only Contract rows displayed without Dimension selection; totals 7043 / 1869"
+    },
+    {
+      "test": "Dimension and Segment slicers",
+      "result": "PASS: PaymentMethod > Electronic check shows 2365 customers, 1071 churned, 45.3%, average monthly charge $76.26, monthly charges $180345"
+    },
+    {
+      "test": "Filters reset and PBIP saved",
+      "result": "PASS"
+    },
+    {
+      "test": "Genuine PBIX native export",
+      "result": "PASS; exported with Power BI file (*.pbix) selection"
+    },
+    {
+      "test": "Exported PBIX reopened",
+      "result": "PASS; all three pages rendered and fresh previews captured"
+    }
+  ],
+  "previews": [
+    "previews/overview.png",
+    "previews/segments.png",
+    "previews/definitions.png"
+  ],
+  "known_limits": [
+    "Not a live Power BI Service embed; no embed URL or work/school authentication available.",
+    "Independent aggregate dimensions; no joint segment filtering.",
+    "Latest Desktop normalized some visual schema URLs to 2.14.0, which returns 404 publicly. Earlier authored files passed full schema validation; do not claim every final Desktop-normalized JSON validated against an available official schema.",
+    "UIAutomation returns hidden duplicate views and stale offscreen bounds. Native page captures accepted only onscreen report groups.",
+    "UIAutomation keyboard shortcuts and synthetic WM_SETTEXT did not reliably commit native Save As edits. Actual native input exported a PBIX under a malformed filename; after closing only the owned process it was renamed to CustomerChurn.pbix and reopened successfully."
+  ]
+}
