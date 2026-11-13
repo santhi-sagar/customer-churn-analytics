@@ -29,7 +29,8 @@ streamlit run app.py
 - A synthetic input template. It is not a source customer.
 - Holdout ROC and precision–recall curves, confusion matrix, prior baseline, model selection evidence and coefficient associations.
 - Deterministic training script, strict schema validation, pytest checks, and Streamlit AppTest interaction coverage.
-- Power BI-ready aggregate CSVs in `data/aggregates/`. `POWERBI_HANDOFF.md` defines safe use and double-counting constraints. The native Power BI report is handled separately; the presence of these assets does not mean a PBIX has been created or opened.
+- A native Power BI report (`powerbi/CustomerChurn.pbix`) with three pages and tested DAX slicers, editable PBIP source in `powerbi/CustomerChurn_PowerBI.zip`, and verified Desktop previews. The deployed **Power BI report** tab displays previews and downloads. This is not a live Power BI Service embed: no published embed URL has been supplied.
+- Power BI-safe aggregate CSVs in `data/aggregates/`. `POWERBI_HANDOFF.md` defines safe use and double-counting constraints.
 
 ## Reproduce the study
 
@@ -73,3 +74,9 @@ Uploads are processed in the app session and are not intentionally written to di
 ## Source and licensing
 
 IBM’s archived [Telco code-pattern repository](https://github.com/IBM/telco-customer-churn-on-icp4d) supplies the CSV. The repository licenses its code pattern under Apache-2.0, but we found no separate dataset-specific license. This is documented uncertainty, not a claim that the dataset is public domain or CC0. No source rows are distributed here. See `DATA_PROVENANCE.md` and `THIRD_PARTY_NOTICES.md`. New project code is licensed under MIT; that license does not relicense IBM material.
+
+## Interactive Power BI embedding
+
+To enable a real interactive report inside the app, publish the supplied aggregate-only report to Power BI Service and obtain an authorized public `https://app.powerbi.com/view?r=...` URL. Configure `POWER_BI_PUBLIC_EMBED_URL` in the hosting environment or Streamlit secrets. Do not paste access tokens. The app accepts only public Microsoft view URLs; a local folder is not an embed URL. Microsoft account/licensing and tenant permissions apply. Publish-to-web exposes the complete model publicly; never use private customer data. Static screenshots and downloadable PBIX remain explicitly labeled until connected.
+
+Native Desktop validation: all three report pages rendered, embedded aggregates refreshed, and PaymentMethod → Electronic check yielded 2,365 customers, 1,071 churned and 45.3% churn. The exported real PBIX was reopened. See `powerbi/native-runtime-result.json`.
